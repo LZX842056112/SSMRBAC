@@ -15,7 +15,7 @@
     
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" >
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/atcrowdfunding-v?rewriteBatchedStatements=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/atcrowdfunding?rewriteBatchedStatements=true&amp;useUnicode=true&amp;characterEncoding=utf8"/>
         <property name="user" value="root"/>
         <property name="password" value="960914"/>
     </bean>
