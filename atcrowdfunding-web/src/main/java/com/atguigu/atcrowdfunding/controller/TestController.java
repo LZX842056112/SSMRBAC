@@ -1,4 +1,4 @@
-package com.atguigu.atcrowdfunding;
+package com.atguigu.atcrowdfunding.controller;
 
 import com.atguigu.atcrowdfunding.bean.User;
 import com.atguigu.atcrowdfunding.service.UserService;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/test")
-public class controllerTestController {
+public class TestController {
 
     @Autowired
     private UserService userService;
