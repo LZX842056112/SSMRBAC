@@ -18,4 +18,14 @@ public class UserServiceImpl implements UserService {
     public List<User> queryAll() {
         return userDao.queryAll();
     }
+
+    /**
+     * 查询用户信息
+     * @param user
+     * @return
+     */
+    @Override
+    public User query4Login(User user) {
+        return userDao.query4Login(user);
+    }
 }

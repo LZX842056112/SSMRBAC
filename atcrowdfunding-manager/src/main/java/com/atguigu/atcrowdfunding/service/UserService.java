@@ -7,4 +7,11 @@ import java.util.List;
 public interface UserService {
 
     public List<User> queryAll();
+
+    /**
+     * 查询用户信息
+     * @param user
+     * @return
+     */
+    public User query4Login(User user);
 }
