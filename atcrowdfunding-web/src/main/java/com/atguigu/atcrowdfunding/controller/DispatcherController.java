@@ -24,6 +24,12 @@ public class DispatcherController {
         return "login";
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:login";
+    }
+
     @RequestMapping("/main")
     public String main() {
         return "main";
@@ -31,10 +37,11 @@ public class DispatcherController {
 
     @ResponseBody
     @RequestMapping("/doAJAXLogin")
-    public Object doAJAXLogin(User user) {
+    public Object doAJAXLogin(User user,HttpSession session) {
         AJAXResult result = new AJAXResult();
         User dbUser = userService.query4Login(user);
         if ( dbUser != null ) {
+            session.setAttribute("loginUser", dbUser);
             result.setSuccess(true);
         } else {
             result.setSuccess(false);

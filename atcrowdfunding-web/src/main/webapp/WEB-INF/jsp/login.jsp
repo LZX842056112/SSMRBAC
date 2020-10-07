@@ -74,7 +74,6 @@
         var userpswd = $("#userpswd").val();
         if ( userpswd == "" ) {
             layer.msg("用户登录密码不能为空，请输入", {time:2000, icon:5, shift:6}, function(){
-
             });
             return;
         }
@@ -97,7 +96,6 @@
                     window.location.href = "main";
                 } else {
                     layer.msg("用户登录账号或密码不正确，请重新输入", {time:2000, icon:5, shift:6}, function(){
-
                     });
                 }
             }
