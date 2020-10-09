@@ -1,5 +1,6 @@
 package com.atguigu.atcrowdfunding.bean;
 
+//用户
 public class User {
     private Integer id;
     private String username;
