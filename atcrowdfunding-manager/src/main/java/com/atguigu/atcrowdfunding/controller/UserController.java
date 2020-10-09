@@ -25,17 +25,18 @@ public class UserController {
     //用户首页，异步
     @ResponseBody
     @RequestMapping("/pageQuery")
-    public Object pageQuery(Integer pageno, Integer pagesize) {
+    public Object pageQuery( String queryText, Integer pageno, Integer pagesize ) {
         AJAXResult result = new AJAXResult();
         try {
             // 分页查询
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("start", (pageno-1)*pagesize);
             map.put("size", pagesize);
-            List<User> users = userService.pageQueryData(map);
+            map.put("queryText", queryText);
+            List<User> users = userService.pageQueryData( map );
             // 当前页码
             // 总的数据条数
-            int totalsize = userService.pageQueryCount(map);
+            int totalsize = userService.pageQueryCount( map );
             // 最大页码（总页码）
             int totalno = 0;
             if ( totalsize % pagesize == 0 ) {
