@@ -27,4 +27,10 @@
         </where>
     </select>
 
+    <!--添加用户-->
+    <insert id="insertUser">
+        insert into t_user (loginacct, username, userpswd, email)
+        values (#{loginacct}, #{username}, #{userpswd}, #{email})
+    </insert>
+
 </mapper>

@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
     public int pageQueryCount(Map<String, Object> map) {
         return userDao.pageQueryCount(map);
     }
+
+    //添加用户
+    public void insertUser(User user) {
+        userDao.insertUser(user);
+    }
 }

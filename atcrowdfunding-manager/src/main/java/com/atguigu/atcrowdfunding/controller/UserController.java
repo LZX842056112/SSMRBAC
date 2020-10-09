@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +23,28 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    //添加用户
+    @ResponseBody
+    @RequestMapping("/insert")
+    public Object insert( User user ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            user.setUserpswd("123456");
+            userService.insertUser(user);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    //添加用户页面
+    @RequestMapping("/add")
+    public String add() {
+        return "user/add";
+    }
 
     //用户首页，异步
     @ResponseBody

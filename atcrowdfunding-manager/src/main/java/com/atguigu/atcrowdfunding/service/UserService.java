@@ -17,4 +17,8 @@ public interface UserService {
 
     //总的数据条数
     int pageQueryCount(Map<String, Object> map);
+
+    //添加用户
+    void insertUser(User user);
+
 }
