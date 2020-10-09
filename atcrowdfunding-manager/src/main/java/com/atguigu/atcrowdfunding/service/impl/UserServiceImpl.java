@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,13 +20,21 @@ public class UserServiceImpl implements UserService {
         return userDao.queryAll();
     }
 
-    /**
-     * 查询用户信息
-     * @param user
-     * @return
-     */
+    //查询用户信息
     @Override
     public User query4Login(User user) {
         return userDao.query4Login(user);
+    }
+
+    //分页查询
+    @Override
+    public List<User> pageQueryData(Map<String, Object> map) {
+        return userDao.pageQueryData(map);
+    }
+
+    //总的数据条数
+    @Override
+    public int pageQueryCount(Map<String, Object> map) {
+        return userDao.pageQueryCount(map);
     }
 }
