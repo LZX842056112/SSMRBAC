@@ -193,6 +193,11 @@
 					}
 				});
 
+			    //重置功能
+			    $("#resetBtn").click(function(){
+			    	$("#userForm")[0].reset();
+			    });
+
 			    //修改用户
 			    $("#updateBtn").click(function(){
 			    	var loginacct = $("#loginacct").val();
