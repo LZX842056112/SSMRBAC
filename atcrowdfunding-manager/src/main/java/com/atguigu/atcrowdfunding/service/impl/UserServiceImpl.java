@@ -42,4 +42,14 @@ public class UserServiceImpl implements UserService {
     public void insertUser(User user) {
         userDao.insertUser(user);
     }
+
+    //回显修改页面
+    public User queryById(Integer id) {
+        return userDao.queryById(id);
+    }
+
+    //修改用户
+    public void updateUser(User user) {
+        userDao.updateUser(user);
+    }
 }

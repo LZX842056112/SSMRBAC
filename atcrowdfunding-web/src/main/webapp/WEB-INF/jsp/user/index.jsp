@@ -237,7 +237,7 @@
 							  tableContent += '  <td>'+user.email+'</td>';
 							  tableContent += '  <td>';
 							  tableContent += '      <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
-							  tableContent += '      <button type="button" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
+							  tableContent += '      <button type="button" onclick="goUpdatePage('+user.id+')" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
 							  tableContent += '	  <button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
 							  tableContent += '  </td>';
 							  tableContent += '</tr>';
@@ -263,6 +263,10 @@
 					  }
 				  }
 			  });
+		  }
+		  //修改用户
+		  function goUpdatePage(id) {
+			  window.location.href = "${APP_PATH}/user/edit?id="+id;
 		  }
 	  </script>
   </body>

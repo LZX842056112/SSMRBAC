@@ -21,4 +21,9 @@ public interface UserService {
     //添加用户
     void insertUser(User user);
 
+    //回显修改页面
+    User queryById(Integer id);
+
+    //修改用户
+    void updateUser(User user);
 }

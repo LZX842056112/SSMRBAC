@@ -24,6 +24,29 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //修改用户
+    @ResponseBody
+    @RequestMapping("/update")
+    public Object update( User user ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            userService.updateUser(user);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    //回显修改页面
+    @RequestMapping("/edit")
+    public String edit( Integer id, Model model ) {
+        User user = userService.queryById(id);
+        model.addAttribute("user", user);
+        return "user/edit";
+    }
+
     //添加用户
     @ResponseBody
     @RequestMapping("/insert")

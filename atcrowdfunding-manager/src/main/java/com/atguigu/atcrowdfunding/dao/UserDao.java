@@ -23,4 +23,11 @@ public interface UserDao {
 
     //添加用户
     void insertUser(User user);
+
+    //回显修改页面
+    @Select("select * from t_user where id = #{id}")
+    User queryById(Integer id);
+
+    //修改用户
+    void updateUser(User user);
 }
