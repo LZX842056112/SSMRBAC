@@ -24,6 +24,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //删除单个用户
+    @ResponseBody
+    @RequestMapping("/delete")
+    public Object delete( Integer id ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            userService.deleteUserById(id);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
     //修改用户
     @ResponseBody
     @RequestMapping("/update")

@@ -238,7 +238,7 @@
 							  tableContent += '  <td>';
 							  tableContent += '      <button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>';
 							  tableContent += '      <button type="button" onclick="goUpdatePage('+user.id+')" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>';
-							  tableContent += '	  <button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
+							  tableContent += '	  <button type="button" onclick="deleteUser('+user.id+', \''+user.loginacct+'\')" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>';
 							  tableContent += '  </td>';
 							  tableContent += '</tr>';
 						  });
@@ -264,9 +264,33 @@
 				  }
 			  });
 		  }
+
 		  //修改用户
 		  function goUpdatePage(id) {
 			  window.location.href = "${APP_PATH}/user/edit?id="+id;
+		  }
+
+		  //删除单个用户
+		  function deleteUser( id, loginacct ) {
+			  layer.confirm("删除用户信息【"+loginacct+"】, 是否继续",  {icon: 3, title:'提示'}, function(cindex){
+				  // 删除用户信息
+				  $.ajax({
+					  type : "POST",
+					  url  : "${APP_PATH}/user/delete",
+					  data : { id : id },
+					  success : function(result) {
+						  if ( result.success ) {
+							  pageQuery(1);
+						  } else {
+							  layer.msg("用户信息删除失败", {time:2000, icon:5, shift:6}, function(){
+							  });
+						  }
+					  }
+				  });
+				  layer.close(cindex);
+			  }, function(cindex){
+				  layer.close(cindex);
+			  });
 		  }
 	  </script>
   </body>

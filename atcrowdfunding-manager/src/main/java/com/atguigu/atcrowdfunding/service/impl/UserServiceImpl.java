@@ -52,4 +52,9 @@ public class UserServiceImpl implements UserService {
     public void updateUser(User user) {
         userDao.updateUser(user);
     }
+
+    //删除单个用户
+    public void deleteUserById(Integer id) {
+        userDao.deleteUserById(id);
+    }
 }

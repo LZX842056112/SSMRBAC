@@ -30,4 +30,7 @@ public interface UserDao {
 
     //修改用户
     void updateUser(User user);
+
+    //删除单个用户
+    void deleteUserById(Integer id);
 }
