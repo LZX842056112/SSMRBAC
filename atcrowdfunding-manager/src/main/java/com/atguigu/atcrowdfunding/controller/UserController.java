@@ -24,6 +24,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //删除多个用户
+    @ResponseBody
+    @RequestMapping("/deletes")
+    public Object deletes( Integer[] userid ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("userids", userid);
+            userService.deleteUsers(map);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
     //删除单个用户
     @ResponseBody
     @RequestMapping("/delete")

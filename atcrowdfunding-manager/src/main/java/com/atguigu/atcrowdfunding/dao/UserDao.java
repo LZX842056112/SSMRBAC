@@ -33,4 +33,7 @@ public interface UserDao {
 
     //删除单个用户
     void deleteUserById(Integer id);
+
+    //删除多个用户
+    void deleteUsers(Map<String, Object> map);
 }

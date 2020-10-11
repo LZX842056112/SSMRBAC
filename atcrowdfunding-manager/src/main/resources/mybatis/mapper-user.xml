@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.atcrowdfunding.dao.UserDao" >
 
+    <!--删除多个用户-->
+    <delete id="deleteUsers">
+        delete from t_user where id in
+        <foreach collection="userids" item="userid" open="(" close=")" separator=",">
+            #{userid}
+        </foreach>
+    </delete>
+
     <!--删除单个用户-->
     <delete id="deleteUserById">
         delete from t_user where id = #{id}

@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(Integer id) {
         userDao.deleteUserById(id);
     }
+
+    //删除多个用户
+    public void deleteUsers(Map<String, Object> map) {
+        userDao.deleteUsers(map);
+    }
 }
