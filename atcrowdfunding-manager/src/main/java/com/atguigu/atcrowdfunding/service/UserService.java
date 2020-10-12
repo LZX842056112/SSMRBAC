@@ -32,4 +32,13 @@ public interface UserService {
 
     //删除多个用户
     void deleteUsers(Map<String, Object> map);
+
+    //查询用户相关联的角色
+    List<Integer> queryRoleidsByUserid(Integer id);
+
+    //分配角色
+    void insertUserRoles(Map<String, Object> map);
+
+    //取消分配角色
+    void deleteUserRoles(Map<String, Object> map);
 }

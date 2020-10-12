@@ -62,4 +62,20 @@ public class UserServiceImpl implements UserService {
     public void deleteUsers(Map<String, Object> map) {
         userDao.deleteUsers(map);
     }
+
+    //查询用户相关联的角色
+    public List<Integer> queryRoleidsByUserid(Integer id) {
+        return userDao.queryRoleidsByUserid(id);
+    }
+
+    //分配角色
+    public void insertUserRoles(Map<String, Object> map) {
+        userDao.insertUserRoles(map);
+    }
+
+    //取消分配角色
+    public void deleteUserRoles(Map<String, Object> map) {
+        userDao.deleteUserRoles(map);
+    }
+
 }

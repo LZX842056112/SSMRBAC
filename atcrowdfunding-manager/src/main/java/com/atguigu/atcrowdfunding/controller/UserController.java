@@ -2,7 +2,9 @@ package com.atguigu.atcrowdfunding.controller;
 
 import com.atguigu.atcrowdfunding.bean.AJAXResult;
 import com.atguigu.atcrowdfunding.bean.Page;
+import com.atguigu.atcrowdfunding.bean.Role;
 import com.atguigu.atcrowdfunding.bean.User;
+import com.atguigu.atcrowdfunding.service.RoleService;
 import com.atguigu.atcrowdfunding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +22,69 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleService roleService;
+
+    //取消分配角色
+    @ResponseBody
+    @RequestMapping("/dounAssign")
+    public Object dounAssign( Integer userid, Integer[] assignroleids ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            // 删除关系表数据
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("userid", userid);
+            map.put("roleids", assignroleids);
+            userService.deleteUserRoles(map);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    //分配角色
+    @ResponseBody
+    @RequestMapping("/doAssign")
+    public Object doAssign( Integer userid, Integer[] unassignroleids ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            // 增加关系表数据
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("userid", userid);
+            map.put("roleids", unassignroleids);
+            userService.insertUserRoles(map);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    //回显分配角色页面
+    @RequestMapping("/assign")
+    public String assign( Integer id, Model model ) {
+        User user = userService.queryById(id);
+        model.addAttribute("user", user);
+        List<Role> roles = roleService.queryAll();
+        List<Role> assingedRoles = new ArrayList<Role>();
+        List<Role> unassignRoles = new ArrayList<Role>();
+        // 获取关系表的数据
+        List<Integer> roleids = userService.queryRoleidsByUserid(id);
+        for ( Role role : roles ) {
+            if ( roleids.contains(role.getId()) ) {
+                assingedRoles.add(role);
+            } else {
+                unassignRoles.add(role);
+            }
+        }
+        model.addAttribute("assingedRoles", assingedRoles);
+        model.addAttribute("unassignRoles", unassignRoles);
+        return "user/assign";
+    }
 
     //删除多个用户
     @ResponseBody

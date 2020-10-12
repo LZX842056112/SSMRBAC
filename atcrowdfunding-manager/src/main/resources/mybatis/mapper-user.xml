@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.atcrowdfunding.dao.UserDao" >
 
+    <!--取消分配角色-->
+    <delete id="deleteUserRoles">
+        delete from t_user_role where userid = #{userid} and roleid in
+        <foreach collection="roleids" item="roleid" open="(" close=")" separator=",">
+            #{roleid}
+        </foreach>
+    </delete>
+
+    <!--分配角色-->
+    <insert id="insertUserRoles">
+        insert into t_user_role ( userid, roleid ) values
+        <foreach collection="roleids" item="roleid" separator=",">
+            ( #{userid}, #{roleid} )
+        </foreach>
+    </insert>
+
     <!--删除多个用户-->
     <delete id="deleteUsers">
         delete from t_user where id in

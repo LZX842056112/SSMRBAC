@@ -36,4 +36,14 @@ public interface UserDao {
 
     //删除多个用户
     void deleteUsers(Map<String, Object> map);
+
+    //分配角色
+    void insertUserRoles(Map<String, Object> map);
+
+    //取消分配角色
+    void deleteUserRoles(Map<String, Object> map);
+
+    //查询用户相关联的角色
+    @Select("select roleid from t_user_role where userid = #{userid}")
+    List<Integer> queryRoleidsByUserid(Integer id);
 }
