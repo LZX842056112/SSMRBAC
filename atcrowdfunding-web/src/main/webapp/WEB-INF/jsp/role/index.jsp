@@ -58,7 +58,7 @@
 			<div class="tree">
 				<ul style="padding-left:0px;" class="list-group">
 					<li class="list-group-item tree-closed" >
-						<a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a> 
+						<a href="/main"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
 					</li>
 					<li class="list-group-item">
 						<span><i class="glyphicon glyphicon glyphicon-tasks"></i> 权限管理 <span class="badge" style="float:right">3</span></span> 

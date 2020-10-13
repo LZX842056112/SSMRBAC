@@ -66,7 +66,7 @@
 								<a href="/user/index" style="color:red;"><i class="glyphicon glyphicon-user"></i> 用户维护</a>
 							</li>
 							<li style="height:30px;">
-								<a href="role.html"><i class="glyphicon glyphicon-certificate"></i> 角色维护</a> 
+								<a href="/role/index"><i class="glyphicon glyphicon-certificate"></i> 角色维护</a>
 							</li>
 							<li style="height:30px;">
 								<a href="permission.html"><i class="glyphicon glyphicon-lock"></i> 许可维护</a> 
