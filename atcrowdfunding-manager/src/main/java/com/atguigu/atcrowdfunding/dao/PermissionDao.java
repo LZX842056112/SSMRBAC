@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface PermissionDao {
 
+	//新增功能
+	void insertPermission(Permission permission);
+
 	// 查询所有的许可数据
 	@Select("select * from t_permission")
 	List<Permission> queryAll();

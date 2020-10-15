@@ -14,6 +14,11 @@ public class PermissionServiceImpl implements PermissionService {
 	@Autowired(required = false)
 	private PermissionDao permissionDao;
 
+	//新增功能
+	public void insertPermission(Permission permission) {
+		permissionDao.insertPermission(permission);
+	}
+
 	// 查询所有的许可数据
 	public List<Permission> queryAll() {
 		return permissionDao.queryAll();

@@ -1,5 +1,6 @@
 package com.atguigu.atcrowdfunding.controller;
 
+import com.atguigu.atcrowdfunding.bean.AJAXResult;
 import com.atguigu.atcrowdfunding.bean.Permission;
 import com.atguigu.atcrowdfunding.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,27 @@ public class PermissionController {
 
     @Autowired(required = false)
     private PermissionService permissionService;
+
+    //新增功能
+    @ResponseBody
+    @RequestMapping("/insert")
+    public Object insert( Permission permission ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            permissionService.insertPermission(permission);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    //新增页面
+    @RequestMapping("/add")
+    public String add() {
+        return "permission/add";
+    }
 
     /**
      * 递归查询许可信息

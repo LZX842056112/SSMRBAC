@@ -10,8 +10,15 @@ public class Permission {
 	private String url;
 	private Integer pid;
 	private boolean open = true;
+    private String icon;
 	private List<Permission> children = new ArrayList<Permission>();
 
+    public String getIcon() {
+        return icon;
+    }
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 	public Integer getId() {
 		return id;
 	}
