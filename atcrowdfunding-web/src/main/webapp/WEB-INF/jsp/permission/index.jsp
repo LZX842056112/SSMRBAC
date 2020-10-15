@@ -199,6 +199,11 @@
 			function addNode(id) {
 				window.location.href = "${APP_PATH}/permission/add?id="+id;
 			}
+
+			//修改节点
+			function editNode(id) {
+				window.location.href = "${APP_PATH}/permission/edit?id="+id;
+			}
         </script>
   </body>
 </html>

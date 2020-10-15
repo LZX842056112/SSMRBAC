@@ -6,6 +6,12 @@ import java.util.List;
 
 public interface PermissionService {
 
+	//修改功能
+	void updatePermission(Permission permission);
+
+	//根据id查询节点
+	Permission queryById(Integer id);
+
 	//新增功能
 	void insertPermission(Permission permission);
 

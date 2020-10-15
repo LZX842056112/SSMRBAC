@@ -5,6 +5,7 @@ import com.atguigu.atcrowdfunding.bean.Permission;
 import com.atguigu.atcrowdfunding.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,6 +20,29 @@ public class PermissionController {
 
     @Autowired(required = false)
     private PermissionService permissionService;
+
+    //修改功能
+    @ResponseBody
+    @RequestMapping("/update")
+    public Object update( Permission permission ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            permissionService.updatePermission(permission);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
+    //修改页面
+    @RequestMapping("/edit")
+    public String edit( Integer id, Model model ) {
+        Permission permission = permissionService.queryById(id);
+        model.addAttribute("permission", permission);
+        return "permission/edit";
+    }
 
     //新增功能
     @ResponseBody

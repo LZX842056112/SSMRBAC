@@ -14,6 +14,16 @@ public class PermissionServiceImpl implements PermissionService {
 	@Autowired(required = false)
 	private PermissionDao permissionDao;
 
+	//修改功能
+	public void updatePermission(Permission permission) {
+		permissionDao.updatePermission(permission);
+	}
+
+	//根据id查询节点
+	public Permission queryById(Integer id) {
+		return permissionDao.queryById(id);
+	}
+
 	//新增功能
 	public void insertPermission(Permission permission) {
 		permissionDao.insertPermission(permission);
