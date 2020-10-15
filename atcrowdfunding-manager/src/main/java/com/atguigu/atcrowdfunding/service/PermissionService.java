@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface PermissionService {
 
+	//删除功能
+	void deletePermission(Permission permission);
+
 	//修改功能
 	void updatePermission(Permission permission);
 

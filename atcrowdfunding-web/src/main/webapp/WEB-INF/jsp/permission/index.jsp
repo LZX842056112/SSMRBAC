@@ -172,16 +172,16 @@
                             if (treeNode.editNameFlag || $("#btnGroup"+treeNode.tId).length>0) return;
                             var s = '<span id="btnGroup'+treeNode.tId+'">';
                             if ( treeNode.level == 0 ) {
-                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="addNode('+treeNode.id+')" href="#" >&nbsp;&nbsp;<i class="fa fa-fw fa-plus rbg "></i></a>';
+                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="addNode('+treeNode.id+')" >&nbsp;&nbsp;<i class="fa fa-fw fa-plus rbg "></i></a>';
                             } else if ( treeNode.level == 1 ) {
-                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;"  onclick="editNode('+treeNode.id+')" href="#" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
+                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;"  onclick="editNode('+treeNode.id+')" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
                                 if (treeNode.children.length == 0) {
-                                    s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deleteNode('+treeNode.id+')" href="#" >&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
+                                    s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deleteNode('+treeNode.id+')">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
                                 }
-                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="addNode('+treeNode.id+')" href="#" >&nbsp;&nbsp;<i class="fa fa-fw fa-plus rbg "></i></a>';
+                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="addNode('+treeNode.id+')">&nbsp;&nbsp;<i class="fa fa-fw fa-plus rbg "></i></a>';
                             } else if ( treeNode.level == 2 ) {
-                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;"  onclick="editNode('+treeNode.id+')" href="#" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
-                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deleteNode('+treeNode.id+')" href="#">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
+                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;"  onclick="editNode('+treeNode.id+')" title="修改权限信息">&nbsp;&nbsp;<i class="fa fa-fw fa-edit rbg "></i></a>';
+                                s += '<a class="btn btn-info dropdown-toggle btn-xs" style="margin-left:10px;padding-top:0px;" onclick="deleteNode('+treeNode.id+')">&nbsp;&nbsp;<i class="fa fa-fw fa-times rbg "></i></a>';
                             }
                             s += '</span>';
                             aObj.after(s);
@@ -203,6 +203,33 @@
 			//修改节点
 			function editNode(id) {
 				window.location.href = "${APP_PATH}/permission/edit?id="+id;
+			}
+
+			//删除节点
+			function deleteNode(id) {
+				layer.confirm("删除许可信息, 是否继续",  {icon: 3, title:'提示'}, function(cindex){
+					// 删除选择的用户信息
+					$.ajax({
+						type : "POST",
+						url  : "${APP_PATH}/permission/delete",
+						data : {
+							id : id
+						},
+						success : function(result) {
+							if ( result.success ) {
+								// 刷新数据
+								var treeObj = $.fn.zTree.getZTreeObj("permissionTree");
+								treeObj.reAsyncChildNodes(null, "refresh");
+							} else {
+								layer.msg("许可信息删除失败", {time:2000, icon:5, shift:6}, function(){
+								});
+							}
+						}
+					});
+					layer.close(cindex);
+				}, function(cindex){
+					layer.close(cindex);
+				});
 			}
         </script>
   </body>

@@ -21,6 +21,21 @@ public class PermissionController {
     @Autowired(required = false)
     private PermissionService permissionService;
 
+    //删除功能
+    @ResponseBody
+    @RequestMapping("/delete")
+    public Object delete( Permission permission ) {
+        AJAXResult result = new AJAXResult();
+        try {
+            permissionService.deletePermission(permission);
+            result.setSuccess(true);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+            result.setSuccess(false);
+        }
+        return result;
+    }
+
     //修改功能
     @ResponseBody
     @RequestMapping("/update")

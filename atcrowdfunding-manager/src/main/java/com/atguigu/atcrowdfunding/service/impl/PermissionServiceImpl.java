@@ -14,6 +14,11 @@ public class PermissionServiceImpl implements PermissionService {
 	@Autowired(required = false)
 	private PermissionDao permissionDao;
 
+	//删除功能
+	public void deletePermission(Permission permission) {
+		permissionDao.deletePermission(permission);
+	}
+
 	//修改功能
 	public void updatePermission(Permission permission) {
 		permissionDao.updatePermission(permission);
