@@ -20,6 +20,30 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 
+	//分配许可
+	@ResponseBody
+	@RequestMapping("/doAssign")
+	public Object doAssign( Integer roleid, Integer[] permissionids ) {
+		AJAXResult result = new AJAXResult();
+		try {
+			Map<String, Object> paramMap = new HashMap<String, Object>();
+			paramMap.put("roleid", roleid);
+			paramMap.put("permissionids", permissionids);
+			roleService.insertRolePermission(paramMap);
+			result.setSuccess(true);
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			result.setSuccess(false);
+		}
+		return result;
+	}
+
+	//分配许可页面
+	@RequestMapping("/assign")
+	public String assign() {
+		return "role/assign";
+	}
+
 	//角色首页，异步
 	@ResponseBody
 	@RequestMapping("/pageQuery")

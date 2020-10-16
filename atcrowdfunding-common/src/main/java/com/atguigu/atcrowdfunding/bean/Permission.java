@@ -10,15 +10,22 @@ public class Permission {
 	private String url;
 	private Integer pid;
 	private boolean open = true;
-    private String icon;
+	private boolean checked = false;
+	private String icon;
 	private List<Permission> children = new ArrayList<Permission>();
 
-    public String getIcon() {
-        return icon;
-    }
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -55,5 +62,4 @@ public class Permission {
 	public void setChildren(List<Permission> children) {
 		this.children = children;
 	}
-	
 }

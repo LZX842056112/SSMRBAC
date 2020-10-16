@@ -16,4 +16,6 @@ public interface RoleService {
 	//查询全部角色
 	List<Role> queryAll();
 
+	//分配许可
+    void insertRolePermission(Map<String, Object> paramMap);
 }

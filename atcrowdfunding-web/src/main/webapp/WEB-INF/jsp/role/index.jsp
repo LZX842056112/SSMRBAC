@@ -263,6 +263,11 @@
             		}
             	});
             }
+
+            //分配许可
+			function goAssignPage(id) {
+				window.location.href = "${APP_PATH}/role/assign?id="+id;
+			}
         </script>
   </body>
 </html>

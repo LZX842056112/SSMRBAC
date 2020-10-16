@@ -6,6 +6,9 @@ import java.util.List;
 
 public interface PermissionService {
 
+	// 获取当前角色已经分配的许可信息
+	List<Integer> queryPermissionidsByRoleid(Integer roleid);
+
 	//删除功能
 	void deletePermission(Permission permission);
 

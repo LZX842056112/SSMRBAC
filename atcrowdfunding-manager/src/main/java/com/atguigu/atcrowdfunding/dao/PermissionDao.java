@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface PermissionDao {
 
+	// 获取当前角色已经分配的许可信息
+	@Select("select permissionid from t_role_permission where roleid = #{roleid}")
+	List<Integer> queryPermissionidsByRoleid(Integer roleid);
+
 	//删除功能
 	void deletePermission(Permission permission);
 

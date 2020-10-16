@@ -21,6 +21,35 @@ public class PermissionController {
     @Autowired(required = false)
     private PermissionService permissionService;
 
+    //回显分配许可
+    @ResponseBody
+    @RequestMapping("/loadAssignData")
+    public Object loadAssignData( Integer roleid ) {
+        List<Permission> permissions = new ArrayList<Permission>();
+        List<Permission> ps = permissionService.queryAll();
+        // 获取当前角色已经分配的许可信息
+        List<Integer> permissionids = permissionService.queryPermissionidsByRoleid(roleid);
+        Map<Integer, Permission> permissionMap = new HashMap<Integer, Permission>();
+        for (Permission p : ps) {
+            if ( permissionids.contains(p.getId()) ) {
+                p.setChecked(true);
+            } else {
+                p.setChecked(false);
+            }
+            permissionMap.put(p.getId(), p);
+        }
+        for ( Permission p : ps ) {
+            Permission child = p;
+            if ( child.getPid() == 0 ) {
+                permissions.add(p);
+            } else {
+                Permission parent = permissionMap.get(child.getPid());
+                parent.getChildren().add(child);
+            }
+        }
+        return permissions;
+    }
+
     //删除功能
     @ResponseBody
     @RequestMapping("/delete")

@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atguigu.atcrowdfunding.dao.RoleDao" >
 
+    <!--删除原有许可-->
+    <delete id="deleteRolePermissions">
+        delete from t_role_permission where roleid = #{roleid}
+    </delete>
+
+    <!--分配许可-->
+    <insert id="insertRolePermission">
+        insert into t_role_permission (roleid, permissionid) values
+        <foreach collection="permissionids" item="permissionid" separator=",">
+            ( #{roleid}, #{permissionid} )
+        </foreach>
+    </insert>
+
     <!--分页查询-->
     <select id="pageQueryData" resultType="com.atguigu.atcrowdfunding.bean.Role">
         select * from t_role

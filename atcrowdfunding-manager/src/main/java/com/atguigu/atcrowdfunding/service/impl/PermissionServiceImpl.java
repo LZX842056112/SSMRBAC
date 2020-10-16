@@ -14,6 +14,11 @@ public class PermissionServiceImpl implements PermissionService {
 	@Autowired(required = false)
 	private PermissionDao permissionDao;
 
+	// 获取当前角色已经分配的许可信息
+	public List<Integer> queryPermissionidsByRoleid(Integer roleid) {
+		return permissionDao.queryPermissionidsByRoleid(roleid);
+	}
+
 	//删除功能
 	public void deletePermission(Permission permission) {
 		permissionDao.deletePermission(permission);
