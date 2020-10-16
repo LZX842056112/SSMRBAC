@@ -1,11 +1,15 @@
 package com.atguigu.atcrowdfunding.dao;
 
 import com.atguigu.atcrowdfunding.bean.Permission;
+import com.atguigu.atcrowdfunding.bean.User;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 public interface PermissionDao {
+
+	// 获取用户权限信息
+	List<Permission> queryPermissionsByUser(User dbUser);
 
 	// 获取当前角色已经分配的许可信息
 	@Select("select permissionid from t_role_permission where roleid = #{roleid}")

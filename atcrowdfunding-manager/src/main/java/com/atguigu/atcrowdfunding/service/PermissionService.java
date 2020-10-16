@@ -1,10 +1,14 @@
 package com.atguigu.atcrowdfunding.service;
 
 import com.atguigu.atcrowdfunding.bean.Permission;
+import com.atguigu.atcrowdfunding.bean.User;
 
 import java.util.List;
 
 public interface PermissionService {
+
+	// 获取用户权限信息
+	List<Permission> queryPermissionsByUser(User dbUser);
 
 	// 获取当前角色已经分配的许可信息
 	List<Integer> queryPermissionidsByRoleid(Integer roleid);

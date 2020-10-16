@@ -1,6 +1,7 @@
 package com.atguigu.atcrowdfunding.service.impl;
 
 import com.atguigu.atcrowdfunding.bean.Permission;
+import com.atguigu.atcrowdfunding.bean.User;
 import com.atguigu.atcrowdfunding.dao.PermissionDao;
 import com.atguigu.atcrowdfunding.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,11 @@ public class PermissionServiceImpl implements PermissionService {
 
 	@Autowired(required = false)
 	private PermissionDao permissionDao;
+
+	// 获取用户权限信息
+	public List<Permission> queryPermissionsByUser(User dbUser) {
+		return permissionDao.queryPermissionsByUser(dbUser);
+	}
 
 	// 获取当前角色已经分配的许可信息
 	public List<Integer> queryPermissionidsByRoleid(Integer roleid) {
