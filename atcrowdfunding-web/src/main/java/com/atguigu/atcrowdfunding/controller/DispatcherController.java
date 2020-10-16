@@ -23,6 +23,11 @@ public class DispatcherController {
     @Autowired
     private PermissionService permissionService;
 
+    @RequestMapping("/error")
+    public String error() {
+        return "error";
+    }
+
     @RequestMapping("/login")
     public String login(){
         return "login";
