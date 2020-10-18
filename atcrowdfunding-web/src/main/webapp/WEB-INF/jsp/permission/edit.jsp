@@ -69,7 +69,7 @@
 								<a href="/role/index"><i class="glyphicon glyphicon-certificate"></i> 角色维护</a>
 							</li>
 							<li style="height:30px;">
-								<a href="permission.html"><i class="glyphicon glyphicon-lock"></i> 许可维护</a>
+								<a href="/permission/index"><i class="glyphicon glyphicon-lock"></i> 许可维护</a>
 							</li>
 						</ul>
 					</li>
